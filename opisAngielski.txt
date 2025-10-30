@@ -1,0 +1,38 @@
+A website for a D&D players’ club.
+
+The website is made using HTML, CSS, and JavaScript. It is easy to use. Its purpose is to introduce participants to the theme of the Dungeons & Dragons club.
+
+The whole site uses colors matching the D&D atmosphere. It should be readable, responsive on every device, and visually impressive. At the very top there is a nice navbar that leads to different sections of the page.
+
+Hero section:
+The main title with smaller text underneath. This section presents the overall theme of the website.
+The background is a moody red and black gradient moving toward the bottom-right corner.
+At the end of this section, the background slightly blurs and transitions into a single color fitting the theme.
+At the bottom center, there’s a button leading to the next section.
+
+Info section:
+Now the background smoothly changes to one D&D-themed color. This background stays for all the remaining sections.
+This section is dedicated to information. On the left side, there is a carousel with four images switching every 5 seconds (can be changed). Each of these images will have text or an image with a button linking to the last section of the website — the rules and activities description.
+On the right side of this section, there is a short description of current events or updates. As an administrator, I will be able to change, remove, and add such information. Everything should be nicely arranged and visible.
+
+Information about the location of sign-ups in the school building.
+
+Gamer section:
+A carousel with the names and icons of the games we play, switching every 3 seconds (can be changed).
+
+Last section:
+Here I’ll list the most important rules of our meetings — what can be brought, etc.
+
+About Us section:
+Here, do what I wrote in the footer section in square brackets, and add the ability to “heart” (like) our post.
+
+Footer:
+Black, visible, and simple to use.
+Include a link to the school’s Facebook page and a contact form to the administrator’s email: mikolajwolfinger@gmail.com (make a nice input field for the message and sender).
+A button “About Us” linking to the section aboutUs.html [which will include a short description of who we are, what class we’re in, and where the idea for creating such a club came from].
+Phone numbers.
+
+
+
+////////////////////////////////////
+Animations required in the website.

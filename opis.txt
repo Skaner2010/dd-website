@@ -1,0 +1,39 @@
+Strona dla kółka graczy D&D
+
+Strona zrobiona jest w językach Html, CSS i JavaScript. Jest ona łatwa w obsłudze. Jej zadaniem jest zapoznanie uczestników w tematyce kółka Dungeons&Dragons. 
+
+Cała strona jest w kolorach klimatycznych do D&D. Ma być czytelna, responsywna na każdym urządzeniu i robiąca wrażenie. Na samej górze znajduje się fajny Navbar prowadzący po różnych sekcjach strony.
+
+Hero section:
+Główny tytuł, z mniejszymi napisami pod nim. Jest to ogólne przedstawienie tematyki całej strony. 
+Tło to klimatyczny czerwono-czarny gradient przesuwający się w prawy dolny róg.
+Na końcu tej sekcji tło lekko się zamazuje i przechodzi w jeden pasujący kolor do klimatu.
+Na dole w środku przycisk prowadzący do nastęnej sekcji.
+
+Info section:
+Teraz tło płynnie zmienia na jeden kolor klimatyczny gry D&d. Takie tło ma zostać do końca wszystkich sekcji.
+Ta sekcja jest poświęcona info. Z lewej strony karuzela z czterema zdjęciami przesuwającymi się co 5sekund(to może być do zmiany).Na każdym z tych obrazków będzie teskt lub obraz z przyciskiem przekierowującym do ostatniej sekcji stronyn- opisu zasad i zajęc.
+Z prawej strony tej sekcji jest krótki opis aktualnmych wydarzeń lub zmian. Jako administrator będę mógł zmieniać usuwać i dodawać takie informacje. Wszystko to ma być ładnie rozmieszczone i widoczne.
+
+Informacja o miejscu zapisów w budynku szkoły. 
+
+AboutUs section:
+
+tu zrób nam to co napisałem w sekcji footer w square brackets, oraz możliwość serduszkowania naszego postu.
+
+Gamer Section:
+karuzela z nazwami i ikonami gier w któe gramy, przejscie co 3 sekundy(może do zmiany)
+
+last section:
+Tu wypiszę najważniejsze zasady naszych spotkań - co można przynośić itp.
+
+Footer:
+czarny widoczny i prosty w użyciu. Link do facebooka szkoły, kontakt z administratorem na maila mikolajwolfinger@gmail.com(tu zrób ładne pole z polem do wpisania wiadomości i od kogo.)
+Przycisk o nas przekierowujący do sekcji aboutUs.html, [w której będzie krótki opis kim jetseśmy w jakiej klasie, ską wziąłsięnasz pomysłna stworzenie takiego kółka.]
+Numeryu telefonu.
+
+
+
+///////////////
+
+
