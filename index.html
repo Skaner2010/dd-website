@@ -4,554 +4,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Klub Dungeons & Dragons</title>
+    <link rel="stylesheet" href="style.css">
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@700;900&family=Open+Sans:wght@400;600&display=swap" rel="stylesheet">
-    <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-
-        body {
-            font-family: 'Open Sans', sans-serif;
-            overflow-x: hidden;
-        }
-
-        /* Navbar */
-        nav {
-            position: fixed;
-            top: 0;
-            width: 100%;
-            background: rgba(20, 20, 20, 0.95);
-            padding: 1rem 2rem;
-            z-index: 1000;
-            backdrop-filter: blur(10px);
-            box-shadow: 0 2px 20px rgba(139, 0, 0, 0.3);
-        }
-
-        nav ul {
-            list-style: none;
-            display: flex;
-            justify-content: center;
-            gap: 2rem;
-            flex-wrap: wrap;
-        }
-
-        nav a {
-            color: #d4af37;
-            text-decoration: none;
-            font-weight: 600;
-            font-size: 1.1rem;
-            transition: all 0.3s;
-            position: relative;
-        }
-
-        nav a:hover {
-            color: #8b0000;
-            transform: translateY(-2px);
-        }
-
-        nav a::after {
-            content: '';
-            position: absolute;
-            bottom: -5px;
-            left: 0;
-            width: 0;
-            height: 2px;
-            background: #8b0000;
-            transition: width 0.3s;
-        }
-
-        nav a:hover::after {
-            width: 100%;
-        }
-
-        /* Hero Section */
-        .hero {
-            min-height: 100vh;
-            background: linear-gradient(to bottom right, #1a0000, #8b0000, #000000);
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            align-items: center;
-            position: relative;
-            padding: 2rem;
-            animation: gradientShift 8s ease infinite;
-        }
-
-        @keyframes gradientShift {
-            0%, 100% { background-position: 0% 50%; }
-            50% { background-position: 100% 50%; }
-        }
-
-        .hero::after {
-            content: '';
-            position: absolute;
-            bottom: 0;
-            left: 0;
-            right: 0;
-            height: 200px;
-            background: linear-gradient(to bottom, transparent, #2a0a0a);
-            backdrop-filter: blur(5px);
-        }
-
-        .hero h1 {
-            font-family: 'Montserrat', sans-serif;
-            font-size: 4rem;
-            font-weight: 900;
-            color: #d4af37;
-            text-align: center;
-            text-shadow: 3px 3px 10px rgba(0, 0, 0, 0.8);
-            animation: fadeInDown 1s ease;
-            z-index: 1;
-        }
-
-        .hero p {
-            font-size: 1.5rem;
-            color: #e0e0e0;
-            text-align: center;
-            margin-top: 1rem;
-            max-width: 800px;
-            animation: fadeInUp 1s ease 0.3s both;
-            z-index: 1;
-        }
-
-        .scroll-btn {
-            position: absolute;
-            bottom: 50px;
-            background: #8b0000;
-            color: #d4af37;
-            padding: 1rem 2.5rem;
-            border: none;
-            border-radius: 50px;
-            font-size: 1.2rem;
-            font-weight: 700;
-            cursor: pointer;
-            transition: all 0.3s;
-            z-index: 2;
-            animation: bounce 2s infinite;
-        }
-
-        .scroll-btn:hover {
-            background: #d4af37;
-            color: #8b0000;
-            transform: scale(1.1);
-        }
-
-        @keyframes bounce {
-            0%, 100% { transform: translateY(0); }
-            50% { transform: translateY(-10px); }
-        }
-
-        @keyframes fadeInDown {
-            from {
-                opacity: 0;
-                transform: translateY(-30px);
-            }
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
-        }
-
-        @keyframes fadeInUp {
-            from {
-                opacity: 0;
-                transform: translateY(30px);
-            }
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
-        }
-
-        /* Info Section */
-        .info-section {
-            background: #2a0a0a;
-            padding: 6rem 2rem;
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 3rem;
-            align-items: start;
-        }
-
-        .carousel-container {
-            position: relative;
-            width: 100%;
-            height: 400px;
-            border-radius: 15px;
-            overflow: hidden;
-            box-shadow: 0 10px 40px rgba(139, 0, 0, 0.5);
-        }
-
-        .carousel-slide {
-            display: none;
-            width: 100%;
-            height: 100%;
-            position: relative;
-            animation: slideIn 0.5s ease;
-        }
-
-        .carousel-slide.active {
-            display: block;
-        }
-
-        @keyframes slideIn {
-            from {
-                opacity: 0;
-                transform: translateX(20px);
-            }
-            to {
-                opacity: 1;
-                transform: translateX(0);
-            }
-        }
-
-        .carousel-slide img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-        }
-
-        .slide-content {
-            position: absolute;
-            bottom: 0;
-            left: 0;
-            right: 0;
-            background: linear-gradient(to top, rgba(0, 0, 0, 0.9), transparent);
-            padding: 2rem;
-            color: white;
-        }
-
-        .slide-content h3 {
-            font-family: 'Montserrat', sans-serif;
-            font-size: 1.8rem;
-            color: #d4af37;
-            margin-bottom: 0.5rem;
-        }
-
-        .slide-content button {
-            margin-top: 1rem;
-            background: #8b0000;
-            color: #d4af37;
-            padding: 0.7rem 1.5rem;
-            border: none;
-            border-radius: 25px;
-            cursor: pointer;
-            font-weight: 700;
-            transition: all 0.3s;
-        }
-
-        .slide-content button:hover {
-            background: #d4af37;
-            color: #8b0000;
-            transform: scale(1.05);
-        }
-
-        .updates-container {
-            background: rgba(139, 0, 0, 0.2);
-            padding: 2rem;
-            border-radius: 15px;
-            border: 2px solid #8b0000;
-        }
-
-        .updates-container h2 {
-            font-family: 'Montserrat', sans-serif;
-            font-size: 2rem;
-            color: #d4af37;
-            margin-bottom: 2rem;
-        }
-
-        .update-item {
-            background: rgba(0, 0, 0, 0.3);
-            padding: 1.5rem;
-            margin-bottom: 1rem;
-            border-radius: 10px;
-            border-left: 4px solid #8b0000;
-            animation: fadeIn 0.5s ease;
-        }
-
-        @keyframes fadeIn {
-            from { opacity: 0; }
-            to { opacity: 1; }
-        }
-
-        .update-item h3 {
-            color: #d4af37;
-            margin-bottom: 0.5rem;
-        }
-
-        .update-item p {
-            color: #e0e0e0;
-            line-height: 1.6;
-        }
-
-        /* Location Section */
-        .location-section {
-            background: #2a0a0a;
-            padding: 4rem 2rem;
-            text-align: center;
-        }
-
-        .location-section h2 {
-            font-family: 'Montserrat', sans-serif;
-            font-size: 2.5rem;
-            color: #d4af37;
-            margin-bottom: 2rem;
-        }
-
-        .location-section p {
-            font-size: 1.3rem;
-            color: #e0e0e0;
-            max-width: 800px;
-            margin: 0 auto;
-            line-height: 1.8;
-        }
-
-        /* Gamer Section */
-        .gamer-section {
-            background: #2a0a0a;
-            padding: 6rem 2rem;
-            text-align: center;
-        }
-
-        .gamer-section h2 {
-            font-family: 'Montserrat', sans-serif;
-            font-size: 2.5rem;
-            color: #d4af37;
-            margin-bottom: 3rem;
-        }
-
-        .games-carousel {
-            max-width: 600px;
-            margin: 0 auto;
-            height: 300px;
-            position: relative;
-        }
-
-        .game-slide {
-            display: none;
-            text-align: center;
-            animation: fadeInScale 0.5s ease;
-        }
-
-        .game-slide.active {
-            display: block;
-        }
-
-        @keyframes fadeInScale {
-            from {
-                opacity: 0;
-                transform: scale(0.9);
-            }
-            to {
-                opacity: 1;
-                transform: scale(1);
-            }
-        }
-
-        .game-icon {
-            font-size: 8rem;
-            margin-bottom: 1rem;
-        }
-
-        .game-slide h3 {
-            font-family: 'Montserrat', sans-serif;
-            font-size: 2.5rem;
-            color: #d4af37;
-        }
-
-        /* Rules Section */
-        .rules-section {
-            background: #2a0a0a;
-            padding: 6rem 2rem;
-        }
-
-        .rules-section h2 {
-            font-family: 'Montserrat', sans-serif;
-            font-size: 2.5rem;
-            color: #d4af37;
-            text-align: center;
-            margin-bottom: 3rem;
-        }
-
-        .rules-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 2rem;
-            max-width: 1200px;
-            margin: 0 auto;
-        }
-
-        .rule-card {
-            background: rgba(139, 0, 0, 0.2);
-            padding: 2rem;
-            border-radius: 15px;
-            border: 2px solid #8b0000;
-            transition: all 0.3s;
-        }
-
-        .rule-card:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 10px 30px rgba(139, 0, 0, 0.5);
-        }
-
-        .rule-card h3 {
-            font-family: 'Montserrat', sans-serif;
-            color: #d4af37;
-            font-size: 1.5rem;
-            margin-bottom: 1rem;
-        }
-
-        .rule-card p {
-            color: #e0e0e0;
-            line-height: 1.6;
-        }
-
-        /* About Us Section */
-        .about-section {
-            background: #2a0a0a;
-            padding: 6rem 2rem;
-            text-align: center;
-        }
-
-        .about-section h2 {
-            font-family: 'Montserrat', sans-serif;
-            font-size: 2.5rem;
-            color: #d4af37;
-            margin-bottom: 2rem;
-        }
-
-        .about-content {
-            max-width: 800px;
-            margin: 0 auto;
-            background: rgba(139, 0, 0, 0.2);
-            padding: 3rem;
-            border-radius: 15px;
-            border: 2px solid #8b0000;
-        }
-
-        .about-content p {
-            color: #e0e0e0;
-            font-size: 1.2rem;
-            line-height: 1.8;
-            margin-bottom: 2rem;
-        }
-
-        .like-button {
-            background: #8b0000;
-            color: #d4af37;
-            padding: 1rem 2rem;
-            border: none;
-            border-radius: 50px;
-            font-size: 1.2rem;
-            font-weight: 700;
-            cursor: pointer;
-            transition: all 0.3s;
-            display: inline-flex;
-            align-items: center;
-            gap: 0.5rem;
-        }
-
-        .like-button:hover {
-            background: #d4af37;
-            color: #8b0000;
-            transform: scale(1.1);
-        }
-
-        .like-button.liked {
-            background: #d4af37;
-            color: #8b0000;
-        }
-
-        /* Footer */
-        footer {
-            background: #000;
-            color: #e0e0e0;
-            padding: 3rem 2rem;
-        }
-
-        .footer-content {
-            max-width: 1200px;
-            margin: 0 auto;
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 3rem;
-        }
-
-        .footer-section h3 {
-            font-family: 'Montserrat', sans-serif;
-            color: #d4af37;
-            margin-bottom: 1rem;
-        }
-
-        .footer-section a {
-            color: #e0e0e0;
-            text-decoration: none;
-            transition: color 0.3s;
-        }
-
-        .footer-section a:hover {
-            color: #d4af37;
-        }
-
-        .contact-form input,
-        .contact-form textarea {
-            width: 100%;
-            padding: 0.8rem;
-            margin-bottom: 1rem;
-            background: rgba(139, 0, 0, 0.2);
-            border: 1px solid #8b0000;
-            border-radius: 5px;
-            color: #e0e0e0;
-            font-family: 'Open Sans', sans-serif;
-        }
-
-        .contact-form textarea {
-            min-height: 100px;
-            resize: vertical;
-        }
-
-        .contact-form button {
-            background: #8b0000;
-            color: #d4af37;
-            padding: 0.8rem 2rem;
-            border: none;
-            border-radius: 25px;
-            cursor: pointer;
-            font-weight: 700;
-            transition: all 0.3s;
-        }
-
-        .contact-form button:hover {
-            background: #d4af37;
-            color: #8b0000;
-        }
-
-        .phone-numbers p {
-            margin-bottom: 0.5rem;
-        }
-
-        /* Responsive */
-        @media (max-width: 768px) {
-            .hero h1 {
-                font-size: 2.5rem;
-            }
-
-            .hero p {
-                font-size: 1.2rem;
-            }
-
-            .info-section {
-                grid-template-columns: 1fr;
-            }
-
-            nav ul {
-                gap: 1rem;
-                font-size: 0.9rem;
-            }
-        }
-    </style>
 </head>
 <body>
     <!-- Navbar -->
@@ -571,7 +25,7 @@
     <section id="hero" class="hero">
         <h1>KLUB DUNGEONS & DRAGONS</h1>
         <p>Dołącz do nas w epickich przygodach pełnych magii, smoków i niezapomnianych historii</p>
-        <button class="scroll-btn" onclick="document.getElementById('info').scrollIntoView({behavior: 'smooth'})">
+        <button class="scroll-btn" onclick="scrollToSection('about')">
             Poznaj Nas
         </button>
     </section>
@@ -580,43 +34,35 @@
     <section id="info" class="info-section">
         <div class="carousel-container">
             <div class="carousel-slide active">
-                <img src="https://images.unsplash.com/photo-1612404730960-5c71577fca11?w=800" alt="D&D Dice">
+                <img src="file:///C:/Users/mikol/OneDrive/Obrazy/Nitro/9260052b49c1a6ec55067b3afc28.webp" alt="D&D Dice">
                 <div class="slide-content">
                     <h3>Spotkania Klubowe</h3>
                     <p>Spotykamy się regularnie, aby stworzyć niezapomniane przygody</p>
-                    <button onclick="document.getElementById('rules').scrollIntoView({behavior: 'smooth'})">
-                        Zobacz Zasady
-                    </button>
+                    <button onclick="scrollToSection('rules')">Zobacz Zasady</button>
                 </div>
             </div>
             <div class="carousel-slide">
-                <img src="https://images.unsplash.com/photo-1566843972142-a7a4f08d7139?w=800" alt="RPG Books">
+                <img src="file:///C:/Users/mikol/OneDrive/Obrazy/Nitro/dnd_starter_set_PL_006-845x321.jpg" alt="RPG Books">
                 <div class="slide-content">
                     <h3>Kampanie i Sesje</h3>
                     <p>Zagraj w długoterminowe kampanie lub jednorazowe przygody</p>
-                    <button onclick="document.getElementById('rules').scrollIntoView({behavior: 'smooth'})">
-                        Dowiedz się więcej
-                    </button>
+                    <button onclick="scrollToSection('rules')">Dowiedz się więcej</button>
                 </div>
             </div>
             <div class="carousel-slide">
-                <img src="https://images.unsplash.com/photo-1611171711912-e58a5b5c6e96?w=800" alt="Character Sheet">
+                <img src="file:///C:/Users/mikol/OneDrive/Obrazy/Nitro/il_570xN.5673690233_m7tc.avif" alt="Character Sheet">
                 <div class="slide-content">
                     <h3>Twórz Postacie</h3>
                     <p>Stwórz unikalną postać i rozwijaj ją w trakcie kampanii</p>
-                    <button onclick="document.getElementById('rules').scrollIntoView({behavior: 'smooth'})">
-                        Zobacz Więcej
-                    </button>
+                    <button onclick="scrollToSection('rules')">Zobacz Więcej</button>
                 </div>
             </div>
             <div class="carousel-slide">
-                <img src="https://images.unsplash.com/photo-1631186215667-ca2e99a0d8d7?w=800" alt="D&D Map">
+                <img src="file:///C:/Users/mikol/OneDrive/Obrazy/Nitro/Bandit-Ambush-Summer-Day-Tree-Overlay-22x16-1.jpg" alt="D&D Map">
                 <div class="slide-content">
                     <h3>Epickie Przygody</h3>
                     <p>Eksploruj światy fantasy i podejmuj heroiczne wyzwania</p>
-                    <button onclick="document.getElementById('rules').scrollIntoView({behavior: 'smooth'})">
-                        Sprawdź Aktywności
-                    </button>
+                    <button onclick="scrollToSection('rules')">Dowiedz się więcej</button>
                 </div>
             </div>
         </div>
@@ -649,26 +95,32 @@
     <!-- Gamer Section -->
     <section id="games" class="gamer-section">
         <h2>Gry, w które gramy</h2>
-        <div class="games-carousel">
-            <div class="game-slide active">
-                <div class="game-icon">🎲</div>
-                <h3>Dungeons & Dragons 5e</h3>
-            </div>
-            <div class="game-slide">
-                <div class="game-icon">🗡️</div>
-                <h3>Pathfinder</h3>
-            </div>
-            <div class="game-slide">
-                <div class="game-icon">🌙</div>
-                <h3>Call of Cthulhu</h3>
-            </div>
-            <div class="game-slide">
-                <div class="game-icon">⚔️</div>
-                <h3>Warhammer Fantasy</h3>
-            </div>
-            <div class="game-slide">
-                <div class="game-icon">🐉</div>
-                <h3>Shadowrun</h3>
+        <div class="games-carousel-wrapper">
+            <div class="games-carousel">
+                <div class="game-slide">
+                    <div class="game-icon">🎲</div>
+                    <h3>Dungeons & Dragons</h3>
+                </div>
+                <div class="game-slide">
+                    <div class="game-icon">🗡️</div>
+                    <h3>Pathfinder</h3>
+                </div>
+                <div class="game-slide">
+                    <div class="game-icon">🌙</div>
+                    <h3>Call of Cthulhu</h3>
+                </div>
+                <div class="game-slide">
+                    <div class="game-icon">⚔️</div>
+                    <h3>Warhammer</h3>
+                </div>
+                <div class="game-slide">
+                    <div class="game-icon">🐉</div>
+                    <h3>Shadowrun</h3>
+                </div>
+                <div class="game-slide">
+                    <div class="game-icon">🃏</div>
+                    <h3>Magic the Gathering</h3>
+                </div>
             </div>
         </div>
     </section>
@@ -679,27 +131,27 @@
         <div class="rules-grid">
             <div class="rule-card">
                 <h3>Co możesz przynieść?</h3>
-                <p>Swoje kostki, karty postaci, notes i długopis. Mile widziane są własne podręczniki i figurki. Pamiętaj, aby zabrać ze sobą dobrą energię i chęć wspólnej zabawy!</p>
+                <p>Swoje kostki, karty postaci, notes i długopis. Mile widziane są własne podręczniki i figurki.</p>
             </div>
             <div class="rule-card">
                 <h3>Punktualność</h3>
-                <p>Spotkania zaczynamy punktualnie. Prosimy o przybycie na 5-10 minut przed rozpoczęciem, abyśmy mogli zacząć sesję o czasie.</p>
+                <p>Spotkania zaczynamy punktualnie. Prosimy o przybycie na 5-10 minut przed rozpoczęciem.</p>
             </div>
             <div class="rule-card">
                 <h3>Szacunek i Fair Play</h3>
-                <p>Szanujemy wszystkich uczestników. Żadnej dyskryminacji, trollingu ani zachowań utrudniających zabawę innym. Gramy fair!</p>
+                <p>Szanujemy wszystkich uczestników. Żadnej dyskryminacji, trollingu ani zachowań utrudniających zabawę.</p>
             </div>
             <div class="rule-card">
                 <h3>Jedzenie i picie</h3>
-                <p>Możesz przynieść przekąski i napoje, ale pamiętaj o utrzymaniu czystości. Nie chcemy niszczyć podręczników ani kart!</p>
+                <p>Możesz przynieść przekąski i napoje, ale pamiętaj o utrzymaniu czystości.</p>
             </div>
             <div class="rule-card">
                 <h3>Telefony</h3>
-                <p>Podczas sesji prosimy o wyciszenie telefonów. Wyjątkiem są aplikacje pomocne w grze (np. generatory postaci).</p>
+                <p>Podczas sesji prosimy o wyciszenie telefonów. Wyjątkiem są aplikacje pomocne w grze.</p>
             </div>
             <div class="rule-card">
                 <h3>Nieobecności</h3>
-                <p>Jeśli nie możesz przyjść, daj znać Mistrzowi Gry z wyprzedzeniem. To pozwoli nam lepiej zaplanować sesję!</p>
+                <p>Jeśli nie możesz przyjść, daj znać Mistrzowi Gry z wyprzedzeniem.</p>
             </div>
         </div>
     </section>
@@ -710,7 +162,6 @@
         <div class="about-content">
             <p>Jesteśmy grupą pasjonatów gier fabularnych z klasy 3B Liceum Ogólnokształcącego. Nasz klub powstał z miłości do Dungeons & Dragons i chęci dzielenia się tą pasją z innymi.</p>
             <p>Pomysł na utworzenie klubu zrodził się podczas przerwy lunchowej, kiedy kilkoro z nas odkryło, że wszyscy gramy w D&D, ale w różnych grupach. Postanowiliśmy połączyć siły i stworzyć miejsce, gdzie każdy może spróbować swoich sił jako gracz lub Mistrz Gry.</p>
-            <p>Od tamtej pory nasz klub rozrósł się do ponad 20 aktywnych członków, którzy regularnie spotykają się, aby tworzyć niezapomniane historie!</p>
             <button class="like-button" id="likeBtn" onclick="toggleLike()">
                 <span id="heartIcon">🤍</span>
                 <span id="likeText">Polub nas!</span>
@@ -746,89 +197,6 @@
         </div>
     </footer>
 
-    <script>
-        // Image Carousel (5 seconds)
-        let currentSlide = 0;
-        const slides = document.querySelectorAll('.carousel-slide');
-        
-        function showSlide(n) {
-            slides.forEach(slide => slide.classList.remove('active'));
-            currentSlide = (n + slides.length) % slides.length;
-            slides[currentSlide].classList.add('active');
-        }
-        
-        setInterval(() => {
-            showSlide(currentSlide + 1);
-        }, 5000);
-
-        // Games Carousel (3 seconds)
-        let currentGame = 0;
-        const gameSlides = document.querySelectorAll('.game-slide');
-        
-        function showGame(n) {
-            gameSlides.forEach(slide => slide.classList.remove('active'));
-            currentGame = (n + gameSlides.length) % gameSlides.length;
-            gameSlides[currentGame].classList.add('active');
-        }
-        
-        setInterval(() => {
-            showGame(currentGame + 1);
-        }, 3000);
-
-        // Like Button
-        let likes = 0;
-        let hasLiked = false;
-        
-        function toggleLike() {
-            const btn = document.getElementById('likeBtn');
-            const heart = document.getElementById('heartIcon');
-            const text = document.getElementById('likeText');
-            const count = document.getElementById('likeCount');
-            
-            if (!hasLiked) {
-                hasLiked = true;
-                likes++;
-                heart.textContent = '❤️';
-                text.textContent = 'Polubiłeś!';
-                btn.classList.add('liked');
-            } else {
-                hasLiked = false;
-                likes--;
-                heart.textContent = '🤍';
-                text.textContent = 'Polub nas!';
-                btn.classList.remove('liked');
-            }
-            count.textContent = `(${likes})`;
-        }
-
-        // Contact Form
-        function sendEmail(e) {
-            e.preventDefault();
-            const name = document.getElementById('senderName').value;
-            const message = document.getElementById('message').value;
-            const email = 'mikolajwolfinger@gmail.com';
-            const subject = 'Wiadomość z formularza - Klub D&D';
-            const body = `Nadawca: ${name}%0D%0A%0D%0AWiadomość:%0D%0A${message}`;
-            
-            window.location.href = `mailto:${email}?subject=${subject}&body=${body}`;
-            
-            document.getElementById('senderName').value = '';
-            document.getElementById('message').value = '';
-        }
-
-        // Smooth scroll for all links
-        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-            anchor.addEventListener('click', function (e) {
-                e.preventDefault();
-                const target = document.querySelector(this.getAttribute('href'));
-                if (target) {
-                    target.scrollIntoView({
-                        behavior: 'smooth',
-                        block: 'start'
-                    });
-                }
-            });
-        });
-    </script>
+    <script src="index.js"></script>
 </body>
 </html>
