@@ -1,0 +1,16 @@
+
+body {
+  background: linear-gradient(135deg, #000000, #8B0000);
+  color: white; 
+  min-height: 100vh;
+}
+
+h1, h2, p {
+  text-shadow: 2px 2px 5px rgba(0,0,0,0.7);
+}
+
+
+button{
+    background-color: darkred;
+    color: white;
+}
