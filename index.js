@@ -78,3 +78,4 @@ document.querySelectorAll('a[href^="#"]').forEach(anchor => {
         scrollToSection(targetId);
     });
 });
+
